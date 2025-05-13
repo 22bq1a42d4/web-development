@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Cart - VVIT FOOD HUB!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+
+        h1, h2 {
+            color: #FEA116;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .navbar {
+            background-color: #0F172B;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 15px;
+            font-weight: bold;
+        }
+
+        .navbar a.active, .navbar a:hover {
+            color: #FEA116;
+        }
+
+        .cart-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .cart-items {
+            list-style: none;
+            padding: 0;
+        }
+
+        .cart-items li {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .total {
+            text-align: right;
+            font-size: 1.2rem;
+            margin-top: 20px;
+        }
+
+        .btn {
+            background-color: #FEA116;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #dc8505;
+        }
+    </style>
+    <script>
+        function setCookie(name, value, days) {
+            const expires = new Date(Date.now() + days * 864e5).toUTCString();
+            document.cookie = `${name}=${encodeURIComponent(JSON.stringify(value))}; expires=${expires}; path=/`;
+        }
+
+        function getCookie(name) {
+            const cookieValue = document.cookie.split('; ').find(row => row.startsWith(name + '='))?.split('=')[1];
+            return cookieValue ? JSON.parse(decodeURIComponent(cookieValue)) : [];
+        }
+
+        function loadCart() {
+            const cart = getCookie('cart') || [];
+            const cartItemsElement = document.getElementById('cart-items');
+            const totalElement = document.getElementById('total');
+            const checkoutButton = document.getElementById('checkout');
+
+            cartItemsElement.innerHTML = '';
+
+            if (cart.length === 0) {
+                cartItemsElement.innerHTML = '<p>Your cart is empty.</p>';
+                totalElement.textContent = 'Total: Rs. 0';
+                checkoutButton.style.display = 'none';
+                return;
+            }
+
+            let total = 0;
+            cart.forEach(item => {
+                total += item.price * item.quantity;
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `
+                    <span>${item.name} (x${item.quantity})</span>
+                    <span>Rs. ${item.price * item.quantity}</span>
+                `;
+                cartItemsElement.appendChild(listItem);
+            });
+
+            totalElement.textContent = `Total: Rs. ${total}`;
+            checkoutButton.style.display = 'block';
+        }
+
+        function checkout() {
+            alert('Order placed successfully!');
+            document.cookie = 'cart=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+            window.location.href = 'payment.html'; 
+            loadCart();
+        }
+
+        window.onload = loadCart;
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="navbar">
+            <a href="index.html" class="navbar-brand">
+                <h1>VVIT FOOD HUB</h1>
+            </a>
+            <div>
+                <a href="index.html">Home</a>
+                <a href="menu.html">Menu</a>
+                <a href="cart.html" class="active">Cart</a>
+            </div>
+        </div>
+
+        <div class="cart-container">
+            <h2>Your Cart</h2>
+            <ul id="cart-items" class="cart-items">
+                <p>Your cart is empty.</p>
+            </ul>
+            <div id="total" class="total">Total: Rs. 0</div>
+            <button id="checkout" class="btn" style="display: none;" onclick="checkout()">Place Order</button>
+        </div>
+    </div>
+</body>
+
+</html>

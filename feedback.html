@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Feedback - VVIT FOOD HUB!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Nunito', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+
+        h1, h2 {
+            color: #FEA116;
+        }
+
+        p {
+            color: #555;
+        }
+
+        .container-xxl {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            background-color: #0F172B;
+            padding: 1rem 2rem;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 15px;
+            font-weight: bold;
+        }
+
+        .navbar a.active {
+            color: #FEA116;
+        }
+
+        .navbar a:hover {
+            color: #FEA116;
+        }
+
+        /* Feedback Section */
+        .container {
+            padding: 3rem 1rem;
+        }
+
+        .container h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .container p {
+            text-align: center;
+            font-size: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        form {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-label {
+            font-weight: bold;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-control:focus {
+            border-color: #FEA116;
+            outline: none;
+        }
+
+        .btn {
+            background-color: #FEA116;
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background-color: #dc8505;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #0F172B;
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .footer p {
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-xxl bg-white p-0">
+        <!-- Navbar -->
+        <div class="container-xxl position-relative p-0">
+            <nav class="navbar">
+                <a href="index.html" class="navbar-brand">
+                    <h1><i class="fa fa-utensils me-3"></i>VVIT FOOD HUB!</h1>
+                </a>
+                <div>
+                    <a href="index.html" class="nav-item">Home</a>
+                    <a href="menu.html" class="nav-item">Menu</a>
+                    <a href="contact.html" class="nav-item">Contact</a>
+                    <a href="feedback.html" class="nav-item active">Feedback</a>
+                </div>
+            </nav>
+        </div>
+        <!-- Navbar End -->
+
+        <!-- Feedback Section -->
+        <div class="container my-5">
+            <h2>We Value Your Feedback</h2>
+            <p>Let us know your thoughts about your experience at VVIT Food Hub!</p>
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <form action="#" method="POST">
+                        <div>
+                            <label for="name" class="form-label">Your Name</label>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" required>
+                        </div>
+                        <div>
+                            <label for="email" class="form-label">Your Email</label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+                        </div>
+                        <div>
+                            <label for="message" class="form-label">Feedback</label>
+                            <textarea class="form-control" id="message" name="message" rows="4" placeholder="Write your feedback here..." required></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn">Submit Feedback</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Feedback Section End -->
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>&copy; 2025 VVIT FOOD HUB. All Rights Reserved.</p>
+        </div>
+        <!-- Footer End -->
+    </div>
+</body>
+
+</html>

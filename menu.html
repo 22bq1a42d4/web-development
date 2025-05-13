@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>VVIT FOOD HUB!</title>
+    <link rel="icon" type="image/x-icon" href="img/image_logo.png">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&family=Pacifico&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+
+    <script>
+        function setCookie(name, value, days) {
+            const expires = new Date(Date.now() + days * 864e5).toUTCString();
+            document.cookie = name + '=' + encodeURIComponent(value) + '; expires=' + expires + '; path=/';
+        }
+
+        function getCookie(name) {
+            return document.cookie.split('; ').reduce((r, v) => {
+                const parts = v.split('=');
+                return parts[0] === name ? decodeURIComponent(parts[1]) : r;
+            }, '');
+        }
+
+        function addToCart(item) {
+    let cart = JSON.parse(getCookie('cart') || '[]');
+    const existingItem = cart.find(cartItem => cartItem.name === item.name);
+
+    if (existingItem) {
+        existingItem.quantity += 1; // Increase quantity if item already exists
+    } else {
+        cart.push({ ...item, quantity: 1 }); // Add new item
+    }
+
+    document.cookie = `cart=${JSON.stringify(cart)}; path=/`; // Save cart to cookie
+    alert(`${item.name} has been added to your cart!`);
+}
+    </script>
+</head>
+
+<body>
+    <div class="container-xxl bg-white p-0">
+        <!-- Spinner Start -->
+        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <!-- Spinner End -->
+
+        <!-- Navbar & Hero Start -->
+        <div class="container-xxl position-relative p-0">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-5 py-3 py-lg-0">
+                <a href="" class="navbar-brand p-0">
+                    <h1 class="text-primary m-0"><i class="fa fa-utensils me-3"></i>VVIT FOOD HUB!</h1>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav ms-auto py-0 pe-4">
+                        <a href="index.html" class="nav-item nav-link">Home</a>
+                        <a href="about.html" class="nav-item nav-link">About</a>
+                        <a href="service.html" class="nav-item nav-link">Service</a>
+                        <a href="menu.html" class="nav-item nav-link active">Menu</a>
+                        <a href="contact.html" class="nav-item nav-link">Contact</a>
+                        <a href="login.html" class="nav-item nav-link">Login</a>
+                    </div>
+                    <a href="cart.html" class="btn btn-primary py-2 px-4"> My Cart</a>
+                </div>
+            </nav>
+
+            <div class="container-xxl py-5 bg-dark hero-header mb-5">
+                <div class="container text-center my-5 pt-5 pb-4">
+                    <h1 class="display-3 text-white mb-3 animated slideInDown">Food Menu</h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center text-uppercase">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                            <li class="breadcrumb-item text-white active" aria-current="page">Menu</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <!-- Navbar & Hero End -->
+
+        <!-- Menu Start -->
+        <div class="container-xxl py-5">
+            <div class="container">
+                <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                    <h5 class="section-title ff-secondary text-center text-primary fw-normal">Food Menu</h5>
+                    <h1 class="mb-5">Most Popular Items</h1>
+                </div>
+                <div class="tab-class text-center wow fadeInUp" data-wow-delay="0.1s">
+                    <ul class="nav nav-pills d-inline-flex justify-content-center border-bottom mb-5">
+                        <li class="nav-item">
+                            <a class="d-flex align-items-center text-start mx-3 ms-0 pb-3 active" data-bs-toggle="pill" href="#tab-1">
+                                <i class="fa fa-cookie-bite fa-2x text-primary"></i>
+                                <div class="ps-3">
+                                    <small class="text-body">Popular</small>
+                                    <h6 class="mt-n1 mb-0">Snack items</h6>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="d-flex align-items-center text-start mx-3 pb-3" data-bs-toggle="pill" href="#tab-2">
+                                <i class="fa fa-coffee fa-2x text-primary"></i>
+                                <div class="ps-3">
+                                    <small class="text-body">Biscuits</small>
+                                    <h6 class="mt-n1 mb-0">& Drinks</h6>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="d-flex align-items-center text-start mx-3 me-0 pb-3" data-bs-toggle="pill" href="#tab-3">
+                                <i class="fa fa-candy-cane fa-2x text-primary"></i>
+                                <div class="ps-3">
+                                    <small class="text-body">Cakes</small>
+                                    <h6 class="mt-n1 mb-0">&Choclates</h6>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="tab-1" class="tab-pane fade show p-0 active">
+                            <div class="row g-4">
+                                <div class="col-lg-6">
+                                    <div class="d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded" src="https://th.bing.com/th/id/OIP.VZi2ikuK3FNn5iFQXpu_xAHaE7?w=248&h=180&c=7&r=0&o=5&pid=1.7" alt="" style="width: 80px;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
+                                                <span>Veg Puff</span>
+                                                <span class="text-primary">Rs.15</span>
+                                            </h5>
+                                            <div class="menu-item">
+                                                <a href="cart.html" >
+                                                    <button onclick="addToCart({ name: 'Veg Puff', price: 15 })" style="background-color: orange; color: rgb(236, 236, 236); border: none;">ADD TO CART</button>
+                                            </a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded" src="https://th.bing.com/th/id/OIP.P5ZiwxpgXr1t24-PBQWlWwHaGB?w=198&h=180&c=7&r=0&o=5&pid=1.7" alt="" style="width: 80px;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
+                                                <span>Egg Puff</span>
+                                                <span class="text-primary">Rs.20</span>
+                                            </h5>
+                                            <div class="cart">
+                                                <a href="cart.html" >
+                                                    <button onclick="addToCart({ name: 'Egg Puff', price: 20 })" style="background-color: orange; color: rgb(236, 236, 236); border: none;">ADD TO CART</button>
+                                           </a> </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded" src="https://th.bing.com/th/id/OIP.yWs1PHojn2Ci8RQLZDTzygHaE6?w=171&h=186&c=7&r=0&o=5&pid=1.7" alt="" style="width: 80px;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
+                                                <span>Panner Puff</span>
+                                                <span class="text-primary">Rs.30</span>
+                                            </h5>
+                                            <div class="cart">
+                                                <a href="cart.html" >
+                                                    <button onclick="addToCart({ name: 'Panner Puff', price: 30 })" style="background-color: orange; color: rgb(236, 236, 236); border: none;">ADD TO CART</button>
+                                            </a></div>
+                                           </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded" src="https://th.bing.com/th/id/OIP.pUOuSrojGePDztjY8HhzUAHaHa?w=184&h=184&c=7&r=0&o=5&pid=1.7" alt="" style="width: 80px;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
+                                                <span>Veg Noodles</span>
+                                                <span class="text-primary">Rs.35</span>
+                                            </h5>
+                                            <div class="cart">
+                                                <a href="cart.html" >
+                                                    <button onclick="addToCart({ name: 'Veg Noodles', price: 35 })" style="background-color: orange; color: rgb(236, 236, 236); border: none;">ADD TO CART</button>
+                                            </a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded" src="https://th.bing.com/th/id/OIP.COLNAUVC4gdFMCKSL1zc-AHaE8?w=291&h=194&c=7&r=0&o=5&pid=1.7" alt="" style="width: 80px;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
+                                                <span>Egg Noodles</span>
+                                                <span class="text-primary">Rs.45</span>
+                                            </h5>
+                                            <div class="cart">
+                                                <a href="cart.html" >
+                                                    <button onclick="addToCart({ name: 'Egg Noodles', price: 45 })" style="background-color: orange; color: rgb(236, 236, 236); border: none;">ADD TO CART</button>
+                                           </a> </div>
+                                            </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded" src="http://ts3.mm.bing.net/th?id=OIP.PsmPMYfYAkiRMVN117sekAAAAA&pid=15.1" alt="" style="width: 80px;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
+                                                <span>Kaju Pie(piece)</span>
+                                                <span class="text-primary">Rs.30</span>
+                                            </h5>
+                                            <div class="cart">
+                                                <a href="cart.html" >
+                                                    <button onclick="addToCart({ name: 'Kaju Pie(piece)', price: 30 })" style="background-color: orange; color: rgb(236, 236, 236); border: none;">ADD TO CART</button>
+                                            </a></div>
+                                              </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded" src="https://th.bing.com/th/id/OIP.AExhEL9QiGbLscwLI2sg3AHaHa?w=200&h=185&c=7&r=0&o=5&pid=1.7" alt="" style="width: 80px;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
+                                                <span>Too Yumm</span>
+                                                <span class="text-primary">Rs.10</span>
+                                            </h5>
+                                            <div class="cart">
+                                                <a href="cart.html" >
+                                                    <button onclick="addToCart({ name: 'Too Yumm', price: 10 })" style="background-color: orange; color: rgb(236, 236, 236); border: none;">ADD TO CART</button>
+                                            </a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded" src="https://th.bing.com/th/id/OIP.xghldfrfuPnkVgy4A6A_5wHaNJ?w=187&h=180&c=7&r=0&o=5&pid=1.7" alt="" style="width: 80px;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
+                                                <span>Sprouts&Groundnut</span>
+                                                <span class="text-primary">RS.10</span>
+                                            </h5>
+                                            <div class="cart">
+                                                <a href="cart.html" >
+                                                    <button onclick="addToCart({ name: 'Sprouts&Groundnut', price: 10 })" style="background-color: orange; color: rgb(236, 236, 236); border: none;">ADD TO CART</button>
+                                           </a> </div>
+                                             </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="tab-2" class="tab-pane fade show p-0">
+                            <div class="row g-4">
+                                <div class="col-lg-6">
+                                    <div class="d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded" src="https://th.bing.com/th?id=OIP.Um3GrvZd48kt1wR61lS1LAHaE8&w=306&h=204&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2" alt="" style="width: 80px;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
+                                                <span>Hide and seek</span>
+                                                <span class="text-primary">RS.10</span>
+                                            </h5>
+                                            <div class="cart">
+                                                <a href="cart.html" >
+                                                    <button onclick="addToCart({ name: 'Hide and seek', price: 10 })" style="background-color: orange; color: rgb(236, 236, 236); border: none;">ADD TO CART</button>
+                                           </a> </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded" src="https://i.ytimg.com/vi/0UKY49beWX8/hq2.jpg?sqp=-oaymwEoCOADEOgC8quKqQMcGADwAQH4Af4JgAKACooCDAgAEAEYJSBUKH8wDw==&rs=AOn4CLA6rhnSFS44hjkchiK6TyXhi9pdhA" alt="" style="width: 80px;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
+                                                <span>Lassi</span>
+                                                <span class="text-primary">RS.20</span>
+                                            </h5>
+                                            <div class="cart">
+                                                <a href="cart.html" >
+                                                    <button onclick="addToCart({ name: 'Lassi', price: 20 })" style="background-color: orange; color: rgb(236, 236, 236); border: none;">ADD TO CART</button>
+                                            </a></div>
+                                            </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded" src="https://th.bing.com/th/id/OIP.tFEduZkjer2pjbojtrU10wAAAA?w=294&h=139&c=7&r=0&o=5&pid=1.7
+                                        " alt="" style="width: 80px;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
+                                                <span>Bournbon</span>
+                                                <span class="text-primary">RS.10</span>
+                                            </h5>
+                                            <div class="cart">
+                                                <a href="cart.html" >
+                                                    <button onclick="addToCart({ name: 'Bournbon', price: 10 })" style="background-color: orange; color: rgb(236, 236, 236); border: none;">ADD TO CART</button>
+                                           </a> </div>
+                                            </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded" src="https://th.bing.com/th/id/OIP.eZVrT34XtxCUYqa9SMVvRAHaIE?w=194&h=220&c=7&r=0&o=5&pid=1.7
+                                        " alt="" style="width: 80px;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
+                                                <span>Frooti</span>
+                                                <span class="text-primary">RS.25</span>
+                                            </h5>
+                                            <div class="cart">
+                                                <a href="cart.html" >
+                                                    <button onclick="addToCart({ name: 'Frooti', price: 25 })" style="background-color: orange; color: rgb(236, 236, 236); border: none;">ADD TO CART</button>
+                                            </a></div>
+                                              </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded" src="https://th.bing.com/th/id/R.fadb7ea7c6b4b69f51f6ce132f0b522f?rik=Aj%2bG3WLruUkt5w&riu=http%3a%2f%2fupload.wikimedia.org%2fwikipedia%2fcommons%2f3%2f3e%2fOreo-Two-Cookies.jpg&ehk=beuOEjjBcv8ca4LhJWUqUyzgr10Kwp7%2bBrRS8oFXZro%3d&risl=1&pid=ImgRaw&r=0" alt="" style="width: 80px;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
+                                                <span>Oreo</span>
+                                                <span class="text-primary">RS.10</span>
+                                            </h5>
+                                            <div class="cart">
+                                                <a href="cart.html" >
+                                                    <button onclick="addToCart({ name: 'Oreo', price: 10 })" style="background-color: orange; color: rgb(236, 236, 236); border: none;">ADD TO CART</button>
+                                            </a></div>
+                                            </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded" src="https://th.bing.com/th/id/OIP.P_9l7ZnrSohC0xwJFZF9iQHaHa?w=184&h=180&c=7&r=0&o=5&pid=1.7
+                                        " alt="" style="width: 80px;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
+                                                <span>Sprite</span>
+                                                <span class="text-primary">RS.20</span>
+                                            </h5>
+                                            <div class="cart">
+                                                <a href="cart.html" >
+                                                    <button onclick="addToCart({ name: 'Sprite', price: 20 })" style="background-color: orange; color: rgb(236, 236, 236); border: none;">ADD TO CART</button>
+                                            </a></div>
+                                            </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded" src="https://th.bing.com/th/id/OIP.bwQY92oOUVoAs-Fkv_B2egAAAA?w=200&h=180&c=7&r=0&o=5&pid=1.7
+                                        " alt="" style="width: 80px;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
+                                                <span>Happy Happy</span>
+                                                <span class="text-primary">RS.10</span>
+                                            </h5>
+                                            <div class="cart">
+                                            <a href="cart.html" >
+                                                <button onclick="addToCart({ name: 'Happy Happy', price: 10 })" style="background-color: orange; color: rgb(236, 236, 236); border: none;">ADD TO CART</button>
+                                        </a></div>
+                                         </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded" src="https://th.bing.com/th/id/OIP.FvtS6vxW0c88naBK95-avAHaHa?w=200&h=180&c=7&r=0&o=5&pid=1.7
+                                        " alt="" style="width: 80px;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
+                                                <span>Thumps up</span>
+                                                <span class="text-primary">RS.20</span>
+                                            </h5>
+                                            <div class="cart">
+                                                <a href="cart.html" >
+                                                    <button onclick="addToCart({ name: 'Thumps up', price: 20 })" style="background-color: orange; color: rgb(236, 236, 236); border: none;">ADD TO CART</button>
+                                            </a></div>
+                                             </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="tab-3" class="tab-pane fade show p-0">
+                            <div class="row g-4">
+                                <div class="col-lg-6">
+                                    <div class="d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded" src="https://th.bing.com/th/id/OIP.uLPEqiLSTBkGyar7hCID2AHaHa?w=202&h=187&c=7&r=0&o=5&pid=1.7
+                                        " alt="" style="width: 80px;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
+                                                <span>Diary Milk</span>
+                                                <span class="text-primary">RS.20</span>
+                                            </h5>
+                                            <div class="cart">
+                                                <a href="cart.html" >
+                                                    <button onclick="addToCart({ name: 'Diary Milk', price: 20 })" style="background-color: orange; color: rgb(236, 236, 236); border: none;">ADD TO CART</button>
+                                           </a> </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded" src="https://th.bing.com/th/id/OIP.RWs9KXLieJ8wc8hA_fjhugHaGi?w=200&h=180&c=7&r=0&o=5&pid=1.7
+                                        " alt="" style="width: 80px;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
+                                                <span>Cup Cake</span>
+                                                <span class="text-primary">RS.45</span>
+                                            </h5>
+                                            <div class="cart">
+                                                <a href="cart.html" >
+                                                    <button onclick="addToCart({ name: 'Cup Cake', price: 45 })" style="background-color: orange; color: rgb(236, 236, 236); border: none;">ADD TO CART</button>
+                                            </a>
+                                            </div>
+                                            </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded" src="https://th.bing.com/th/id/OIP.peVrR8iO1D5uUQP8wEiPZQHaE9?w=263&h=180&c=7&r=0&o=5&pid=1.7
+                                        " alt="" style="width: 80px;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
+                                                <span>Crispelo</span>
+                                                <span class="text-primary">RS.20</span>
+                                            </h5>
+                                            <div class="cart">
+                                                <a href="cart.html" >
+                                                    <button onclick="addToCart({ name: 'Crispelo', price: 20 })" style="background-color: orange; color: rgb(236, 236, 236); border: none;">ADD TO CART</button>
+                                           </a> 
+                                            </div>
+                                           </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded" src="https://th.bing.com/th/id/OIP.GD0SvozMRkmjxgGkC2C2sgHaHZ?w=200&h=180&c=7&r=0&o=5&pid=1.7
+                                        " alt="" style="width: 80px;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
+                                                <span>Red Velvet</span>
+                                                <span class="text-primary">RS.65</span>
+                                            </h5>
+                                            <div class="cart">
+                                                <a href="cart.html" >
+                                                    <button onclick="addToCart({ name: 'Red Velvet', price: 65 })" style="background-color: orange; color: rgb(236, 236, 236); border: none;">ADD TO CART</button>
+                                           </a> </div>
+                                            </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded" src="https://th.bing.com/th/id/OIP.575910UMyoq02hB32-i9kwHaEZ?w=216&h=180&c=7&r=0&o=5&pid=1.7
+                                        " alt="" style="width: 80px;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
+                                                <span>5Star</span>
+                                                <a href="cart.html" >
+                                                <span class="text-primary">RS.20</span>
+                                            </h5>
+                                            <div class="cart">
+                                                <a href="cart.html" >
+                                                    <button onclick="addToCart({ name: '5Star', price: 20 })" style="background-color: orange; color: rgb(236, 236, 236); border: none;">ADD TO CART</button>
+                                        </a></div>
+                                            </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded" src="https://th.bing.com/th/id/OIP.rqbaR0IZFSGR9_l5XiIA4QHaLH?w=200&h=200&c=7&r=0&o=5&pid=1.7
+                                        " alt="" style="width: 80px;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
+                                                <span>Donuts</span>
+                                                <span class="text-primary">RS.20</span>
+                                            </h5>
+                                            <div class="cart">
+                                                <a href="cart.html" >
+                                                    <button onclick="addToCart({ name: 'Donuts', price: 20 })" style="background-color: orange; color: rgb(236, 236, 236); border: none;">ADD TO CART</button>
+                                           </a> </div>
+                                            </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded" src="https://th.bing.com/th/id/OIP.GqRX-jTu2qBP22OJQlJDegHaIq?w=200&h=180&c=7&r=0&o=5&pid=1.7" alt="" style="width: 80px;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
+                                                <span>Fuse</span>
+                                                
+                                                <span class="text-primary">RS.25</span>
+                                            </h5>
+                                            <div class="cart">
+                                                <a href="cart.html" >
+                                                    <button onclick="addToCart({ name: 'Fuse', price: 25 })" style="background-color: orange; color: rgb(236, 236, 236); border: none;">ADD TO CART</button>
+                                            </a></div>
+                                           </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded" src="https://th.bing.com/th/id/OIP.48QJHfc00O3S8kSfLXHlywHaHa?w=184&h=184&c=7&r=0&o=5&pid=1.7
+                                        " alt="" style="width: 80px;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
+                                                <span>Brownie</span>
+                                                
+                                                <span class="text-primary">RS.30</span>
+                                            </h5>
+                                            <div class="cart">
+                                                <a href="cart.html" >
+                                                    <button onclick="addToCart({ name: 'Brownie', price: 30 })" style="background-color: orange; color: rgb(236, 236, 236); border: none;">ADD TO CART</button>
+                                        </a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Menu End -->
+            
+
+        <!-- Footer Start -->
+        <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
+            <div class="container py-5">
+                <div class="row g-5">
+                    <div class="col-lg-3 col-md-6">
+                        <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Company</h4>
+                        <a class="btn btn-link" href="">About Us</a>
+                        <a class="btn btn-link" href="">Contact Us</a>
+                        <a class="btn btn-link" href="">Reservation</a>
+                        <a class="btn btn-link" href="">Privacy Policy</a>
+                        <a class="btn btn-link" href="">Terms & Condition</a>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Contact</h4>
+                        <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>VVIT, Nambur, Guntur</p>
+                        <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+91 9135792468</p>
+                        <p class="mb-2"><i class="fa fa-envelope me-3"></i>vvit@gmail.com</p>
+                        <div class="d-flex pt-2">
+                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
+                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Opening</h4>
+                        <h5 class="text-light fw-normal">Monday - Saturday</h5>
+                        <p>08AM - 04PM</p>
+                        <h5 class="text-light fw-normal">Sunday</h5>
+                        <p>NO SERVICE</p>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Better Experience</h4>
+                        <p>For better experience please create an account.</p>
+                        <div class="position-relative mx-auto" style="max-width: 400px;">
+                            <input class="form-control border-primary w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
+                            <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="copyright">
+                    <div class="row">
+                        <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                            &copy; <a class="border-bottom" href="#">VVIT FOOD HUB!</a>, All Right Reserved.
+                            Designed by<a class="border-bottom">HTML,CSS,JAVASCRIPT</a><br><br>
+                            Project done by<a class="border-bottom">students of CSM-C</a>
+                        </div>
+                        <div class="col-md-6 text-center text-md-end">
+                            <div class="footer-menu">
+                                <a href="">Home</a>
+                                <a href="">Cookies</a>
+                                <a href="">Help</a>
+                                <a href="">FQAs</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End -->
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/tempusdominus/js/moment.min.js"></script>
+    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>
